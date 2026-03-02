@@ -1,0 +1,74 @@
+---
+config:
+  layout: elk
+  theme: dark
+---
+classDiagram
+direction LR
+    class Form {
+	    +Form()
+    }
+
+    class Classifica {
+	    +Classifica()
+	    +updateClassifica() void
+    }
+
+    class Buca {
+	    +Buca()
+	    +controlIfMoleIsTrue() boolean
+	    +hitHole() int
+    }
+
+    class Giocatore {
+	    -String name
+	    -int point
+	    +Giocatore(String name, int point)
+	    +tryHit() boolean
+	    +hitFail() int
+    }
+
+    class GestoreGioco {
+	    Timer t
+	    +GestoreGioco()
+	    +assignTalpa() void
+	    +start() void
+	    +incrementPoint() void
+	    +getOutMole() void
+	    +getInMole() void
+    }
+
+    class TypeOfMole {
+	    -golden
+	    -silver
+	    -classic
+    }
+
+    class Runnable {
+    }
+
+    class Talpa {
+	    -int pointValue
+	    -boolean hit
+	    -Time timeOut
+	    -TypeOfMole type
+	    -Time return
+	    +Talpa(int pointValue, boolean hit, Time timeOut, TypeOfMole type ,Time return)
+	    +moleGetOut() void
+	    +runnable()
+    }
+
+	<<enum>> TypeOfMole
+	<<Interface>> Runnable
+
+	note for Talpa "stesso tempo return = timeOut"
+	note for Buca "hitHole serve per vedere cosa succede quando colpisco una buca con o senza talpa, io penso che scala i punti del giocatore"
+	note for Giocatore "stesso ragionamento del hitHole della buca"
+
+    GestoreGioco "1" -- "9" Buca : -ArrayList buche
+    GestoreGioco "1" o-- "1" Talpa : -Talpa ta
+    Form --> GestoreGioco : -GestoreGioco g
+    GestoreGioco "1" --> "1" Classifica : -Cassifica c
+    GestoreGioco "1" -- "1" Giocatore : -Giocatore gi
+    TypeOfMole -- Talpa
+    Talpa ..|> Runnable
