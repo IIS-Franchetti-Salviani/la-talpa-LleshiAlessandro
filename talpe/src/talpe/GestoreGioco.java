@@ -48,4 +48,40 @@ public class GestoreGioco {
         talpa.randomType();
         talpa.appear();
     }
+    
+    public void colpisciBuca(int index) {
+        // Controllo se la buca cliccata ha la talpa
+        if (buche[index].hasMole()) {
+            talpa.setHitTrue();
+            giocatore.addPoints(talpa.getPointValue());
+            buche[index].setMole(false);
+            bucaAttiva = -1;
+        } else {
+            System.out.println("Hai cliccato un buco vuoto!");
+        }
+
+        //aggiorno la classifica
+        classifica.aggiorna(giocatore);
+    }
+    
+    public void cicloTalpa() {
+        Thread t = new Thread(() -> {
+            while (true) {
+                try {
+                    spawnTalpa();
+                    Thread.sleep(1000 + rdn.nextInt(1000));
+                } catch (InterruptedException e) {
+                    break;
+                }
+            }
+        });
+        t.start();
+    }
+    
+    
+    public void start() {
+        bucaAttiva = -1;
+        spawnTalpa();
+        cicloTalpa();
+    }
 }
