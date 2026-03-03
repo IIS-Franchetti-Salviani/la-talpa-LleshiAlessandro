@@ -20,11 +20,10 @@ public class Talpa implements Runnable{
     
     
     private Random rdn = new Random();
-    private int x = rdn.nextInt();
     
-    public Talpa(int timeOut){
-        this.timeOut = timeOut;
-        this.ritorna = timeOut;
+    public Talpa() {
+        this.hit = false;
+        randomType(); // inizializza con tipo casuale
     }
     
     private void randomType(){
