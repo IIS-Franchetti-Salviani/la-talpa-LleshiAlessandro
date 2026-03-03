@@ -9,5 +9,17 @@ package talpe;
  * @author lleshi.alessandro
  */
 public class Buca {
-    
+    private boolean hasMole;
+
+    public Buca() {
+        this.hasMole = false;
+    }
+
+    public void setMole(boolean value) {
+        this.hasMole = value;
+    }
+
+    public boolean hasMole() {
+        return hasMole;
+    }
 }

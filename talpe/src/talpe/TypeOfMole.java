@@ -9,7 +9,17 @@ package talpe;
  * @author lleshi.alessandro
  */
 public enum TypeOfMole {
-    GOLDEN,
-    SILVER,
-    CLASSIC;
+    GOLDEN(5),
+    SILVER(3),
+    CLASSIC(1);
+
+    private int pointValue;
+
+    TypeOfMole(int pointValue) {
+        this.pointValue = pointValue;
+    }
+
+    public int getPointValue() {
+        return pointValue;
+    }
 }

@@ -4,7 +4,7 @@
  */
 package talpe;
 
-import java.time.LocalTime;
+import java.util.Random;
 
 /**
  *
@@ -16,31 +16,35 @@ public class Talpa implements Runnable{
     private int timeOut;
     private TypeOfMole type;
     private int ritorna;
-
+    private Thread t = new Thread();
+    
+    
+    private Random rdn = new Random();
+    private int x = rdn.nextInt();
+    
     public Talpa(int timeOut) {
         this.timeOut = timeOut;
         this.ritorna = timeOut;
     }
     
-    public void randomTypeMole(){
-        
-        
-        switch (type) {
-            case GOLDEN:
-                this.pointValue = 5;
+    private void randomType() {
+        int n = rdn.nextInt(3);
+        switch (n) {
+            case 0:
+                type = TypeOfMole.GOLDEN;
                 break;
-            case SILVER:
-                this.pointValue = 3;
+            case 1:
+                type = TypeOfMole.SILVER;
                 break;
             default:
-                this.pointValue = 1;
+                type = TypeOfMole.CLASSIC;
                 break;
         }
     }
     
-    
     @Override
-    public void run(){
+    public void run() {
+
         
     }
     

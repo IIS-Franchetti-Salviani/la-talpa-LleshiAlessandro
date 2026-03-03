@@ -4,19 +4,17 @@
  */
 package talpe;
 
-import java.util.ArrayList;
-import java.util.Timer;
+
 
 /**
  *
  * @author lleshi.alessandro
  */
 public class GestoreGioco {
-    private Timer t;
-    private Talpa mole = new Talpa(5);
-    private Giocatore gamer = new Giocatore("giocatore 1", 0);
-    private ArrayList<Buca> holes = new ArrayList();
-    private Classifica calssific = new Classifica();
+    private Buca[] buche = new Buca[9];
+    private Talpa talpa;
+    private Giocatore giocatore;
+    private int bucaAttiva;
     
     
 }
