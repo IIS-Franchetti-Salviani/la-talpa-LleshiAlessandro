@@ -30,22 +30,20 @@ public class Talpa implements Runnable{
     private void randomType() {
         int n = rdn.nextInt(3);
         switch (n) {
-            case 0:
-                type = TypeOfMole.GOLDEN;
-                break;
-            case 1:
-                type = TypeOfMole.SILVER;
-                break;
-            default:
-                type = TypeOfMole.CLASSIC;
-                break;
+            case 0 -> type = TypeOfMole.GOLDEN;
+            case 1 -> type = TypeOfMole.SILVER;
+            default -> type = TypeOfMole.CLASSIC;
         }
+        pointValue = type.getPointValue();
     }
+    
+    
     
     @Override
     public void run() {
 
         
     }
+
     
 }

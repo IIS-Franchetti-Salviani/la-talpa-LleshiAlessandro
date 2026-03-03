@@ -4,6 +4,8 @@
  */
 package talpe;
 
+import java.util.Random;
+
 
 
 /**
@@ -16,5 +18,7 @@ public class GestoreGioco {
     private Giocatore giocatore;
     private int bucaAttiva;
     
+
+
     
 }
