@@ -26,7 +26,7 @@ public class Talpa implements Runnable{
         randomType(); // inizializza con tipo casuale
     }
     
-    private void randomType(){
+    public void randomType(){
         int n = rdn.nextInt(3);
         switch (n) {
             case 0 -> type = TypeOfMole.GOLDEN;
@@ -47,7 +47,7 @@ public class Talpa implements Runnable{
 
     
     //tutte le casistiche della talpa
-    public void appeare(){
+    public void appear(){
     hit = false;
     //la talpa è uscita
 }
@@ -71,7 +71,7 @@ public class Talpa implements Runnable{
     while (!Thread.currentThread().isInterrupted()){
         try {
                 randomType();
-                appeare();
+                appear();
                 Thread.sleep(2000);
                 controlEscape();      
                 Thread.sleep(1000);
