@@ -9,7 +9,7 @@ package talpe;
  * @author lleshi.alessandro
  */
 public class Giocatore {
-     private String name;
+    private String name;
     private int points;
 
     public Giocatore(String name) {

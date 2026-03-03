@@ -31,8 +31,13 @@ public class GestoreGioco {
         rdn = new Random();
         bucaAttiva = -1; //nessuna buca attiva all’inizio
     }
-    
-    
+    //costruttore con nome per l'utente
+    public GestoreGioco(String nome) {
+        giocatore = new Giocatore(nome);
+        talpa = new Talpa();
+        classifica = new Classifica();
+        bucaAttiva = -1;
+    }
     public void spawnTalpa() {
         // se c'è già una buca attiva, resetto
         if (bucaAttiva != -1) {
@@ -48,7 +53,6 @@ public class GestoreGioco {
         talpa.randomType();
         talpa.appear();
     }
-    
     public void colpisciBuca(int index) {
         // Controllo se la buca cliccata ha la talpa
         if (buche[index].hasMole()) {
@@ -56,14 +60,10 @@ public class GestoreGioco {
             giocatore.addPoints(talpa.getPointValue());
             buche[index].setMole(false);
             bucaAttiva = -1;
-        } else {
-            System.out.println("Hai cliccato un buco vuoto!");
         }
-
         //aggiorno la classifica
         classifica.aggiorna(giocatore);
     }
-    
     public void cicloTalpa() {
         Thread t = new Thread(() -> {
             while (true) {
@@ -77,11 +77,19 @@ public class GestoreGioco {
         });
         t.start();
     }
-    
-    
     public void start() {
         bucaAttiva = -1;
         spawnTalpa();
         cicloTalpa();
+    }
+    
+    public Giocatore getGiocatore() {
+        return giocatore;
+    }
+    public int getBucaAttiva() {
+        return bucaAttiva;
+    }
+    public Talpa getTalpa() {
+        return talpa;
     }
 }

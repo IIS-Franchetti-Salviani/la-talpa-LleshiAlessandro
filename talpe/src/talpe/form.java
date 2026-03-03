@@ -5,6 +5,8 @@
 package talpe;
 
 import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
@@ -15,13 +17,22 @@ public class form extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(form.class.getName());
     
     Color c = new Color(102, 165, 21);
-    GestoreGioco g = new GestoreGioco();
+    GestoreGioco g;
+    ImageIcon iconTalpa;
+    private JButton[] bottoniBuca;
+    Color m = new Color(202, 125, 80);
+    
     
     public form() {
         initComponents();
         this.getContentPane().setBackground(c);
         this.setSize(900, 550);
-        
+        g = new GestoreGioco();
+        iconTalpa = new ImageIcon(getClass().getResource("/talpe/talpaImmage/talpa.png"));
+        bottoniBuca = new JButton[]{jButton1, jButton4, jButton5, jButton6, jButton7, jButton8, jButton3, jButton9, jButton10};
+        for(JButton i : bottoniBuca){
+            i.setBackground(m);
+        }
     }
 
     /**
@@ -45,13 +56,14 @@ public class form extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         jButton2.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
         jButton1.setActionCommand("jButton11");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,7 +72,6 @@ public class form extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 120, 120));
 
-        jButton3.setText("jButton3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -68,7 +79,6 @@ public class form extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, 120, 120));
 
-        jButton4.setText("jButton4");
         jButton4.setToolTipText("");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +87,6 @@ public class form extends javax.swing.JFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 120, 120));
 
-        jButton5.setText("jButton5");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -85,7 +94,6 @@ public class form extends javax.swing.JFrame {
         });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 120, 120));
 
-        jButton6.setText("jButton6");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -93,7 +101,6 @@ public class form extends javax.swing.JFrame {
         });
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 120, 120));
 
-        jButton7.setText("jButton7");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -101,7 +108,6 @@ public class form extends javax.swing.JFrame {
         });
         getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 120, 120));
 
-        jButton8.setText("jButton8");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -109,7 +115,6 @@ public class form extends javax.swing.JFrame {
         });
         getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, 120, 120));
 
-        jButton9.setText("jButton9");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -117,7 +122,6 @@ public class form extends javax.swing.JFrame {
         });
         getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 120, 120));
 
-        jButton10.setText("jButton10");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -142,51 +146,186 @@ public class form extends javax.swing.JFrame {
         });
         getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 220, 120));
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, 200, 110));
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("punteggio");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, 60, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+    g.colpisciBuca(0);
+
+    jLabel1.setText("Punti: " + g.getGiocatore().getPoints());
+
+    for (int i = 0; i < bottoniBuca.length; i++) {
+        if (g.getBucaAttiva() == i && g.getTalpa().isVisible()) {
+            bottoniBuca[i].setIcon(iconTalpa);
+        } else {
+            bottoniBuca[i].setIcon(null);
+        }
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    /*
+    String nome = javax.swing.JOptionPane.showInputDialog(this, "Inserisci il tuo nome:");
+
+    if (nome == null || nome.trim().isEmpty()) {
+        nome = "Player";
+    }
+
+    g = new GestoreGioco(nome);  // passiamo il nome al gestore
+    jLabel1.setText("Punti: 0");
+    */
+    g.start();  // fa partire il gioco e la talpa
     
+    
+    
+
+    jLabel1.setText("Punti: " + g.getGiocatore().getPoints());
+
+    for (int i = 0; i < bottoniBuca.length; i++) {
+        if (g.getBucaAttiva() == i && g.getTalpa().isVisible()) {
+            bottoniBuca[i].setIcon(iconTalpa);
+        } else {
+            bottoniBuca[i].setIcon(null);
+        }
+    }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        String testoIstruzioni = """
+        Benvenuto in Acchiappa la Talpa!
+        
+        - Premi 'Gioca' per iniziare.
+        - Clicca sulle buche per colpire la talpa.
+        - Ogni talpa vale punti diversi:
+            * GOLDEN = 5 punti
+            * SILVER = 3 punti
+            * CLASSIC = 1 punto
+        - Divertiti e cerca di fare il punteggio più alto!
+        """;
+
+    javax.swing.JOptionPane.showMessageDialog(this, testoIstruzioni, "Istruzioni", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        
+        
+        
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+    g.colpisciBuca(1);
+
+    jLabel1.setText("Punti: " + g.getGiocatore().getPoints());
+
+    for (int i = 0; i < bottoniBuca.length; i++) {
+        if (g.getBucaAttiva() == i && g.getTalpa().isVisible()) {
+            bottoniBuca[i].setIcon(iconTalpa);
+        } else {
+            bottoniBuca[i].setIcon(null);
+        }
+    }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+    g.colpisciBuca(2);
+
+    jLabel1.setText("Punti: " + g.getGiocatore().getPoints());
+
+    for (int i = 0; i < bottoniBuca.length; i++) {
+        if (g.getBucaAttiva() == i && g.getTalpa().isVisible()) {
+            bottoniBuca[i].setIcon(iconTalpa);
+        } else {
+            bottoniBuca[i].setIcon(null);
+        }
+    }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        g.colpisciBuca(3);
+
+    jLabel1.setText("Punti: " + g.getGiocatore().getPoints());
+
+    for (int i = 0; i < bottoniBuca.length; i++) {
+        if (g.getBucaAttiva() == i && g.getTalpa().isVisible()) {
+            bottoniBuca[i].setIcon(iconTalpa);
+        } else {
+            bottoniBuca[i].setIcon(null);
+        }
+    }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+       g.colpisciBuca(4);
+
+    jLabel1.setText("Punti: " + g.getGiocatore().getPoints());
+
+    for (int i = 0; i < bottoniBuca.length; i++) {
+        if (g.getBucaAttiva() == i && g.getTalpa().isVisible()) {
+            bottoniBuca[i].setIcon(iconTalpa);
+        } else {
+            bottoniBuca[i].setIcon(null);
+        }
+    }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        g.colpisciBuca(5);
+
+    jLabel1.setText("Punti: " + g.getGiocatore().getPoints());
+
+    for (int i = 0; i < bottoniBuca.length; i++) {
+        if (g.getBucaAttiva() == i && g.getTalpa().isVisible()) {
+            bottoniBuca[i].setIcon(iconTalpa);
+        } else {
+            bottoniBuca[i].setIcon(null);
+        }
+    }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+       g.colpisciBuca(6);
+
+    jLabel1.setText("Punti: " + g.getGiocatore().getPoints());
+
+    for (int i = 0; i < bottoniBuca.length; i++) {
+        if (g.getBucaAttiva() == i && g.getTalpa().isVisible()) {
+            bottoniBuca[i].setIcon(iconTalpa);
+        } else {
+            bottoniBuca[i].setIcon(null);
+        }
+    }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+        g.colpisciBuca(7);
+
+    jLabel1.setText("Punti: " + g.getGiocatore().getPoints());
+
+    for (int i = 0; i < bottoniBuca.length; i++) {
+        if (g.getBucaAttiva() == i && g.getTalpa().isVisible()) {
+            bottoniBuca[i].setIcon(iconTalpa);
+        } else {
+            bottoniBuca[i].setIcon(null);
+        }
+    }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        g.colpisciBuca(8);
+
+    jLabel1.setText("Punti: " + g.getGiocatore().getPoints());
+
+    for (int i = 0; i < bottoniBuca.length; i++) {
+        if (g.getBucaAttiva() == i && g.getTalpa().isVisible()) {
+            bottoniBuca[i].setIcon(iconTalpa);
+        } else {
+            bottoniBuca[i].setIcon(null);
+        }
+    }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -227,5 +366,7 @@ public class form extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

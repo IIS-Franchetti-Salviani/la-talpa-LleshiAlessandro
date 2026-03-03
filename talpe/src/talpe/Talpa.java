@@ -13,19 +13,15 @@ import java.util.Random;
 public class Talpa implements Runnable{
     private int pointValue;
     private boolean hit;
-    private int timeOut;
     private TypeOfMole type;
-    private int ritorna;
-    private Thread t = new Thread();
-    
-    
+    private boolean visible; 
     private Random rdn = new Random();
-    
+
     public Talpa() {
         this.hit = false;
+        this.visible = false;
         randomType(); // inizializza con tipo casuale
     }
-    
     public void randomType(){
         int n = rdn.nextInt(3);
         switch (n) {
@@ -35,7 +31,6 @@ public class Talpa implements Runnable{
         }
         pointValue = type.getPointValue();
     }
-    
     public TypeOfMole getType(){
         return type;
     }
@@ -44,39 +39,43 @@ public class Talpa implements Runnable{
     }
     
     
-
-    
     //tutte le casistiche della talpa
     public void appear(){
-    hit = false;
-    //la talpa è uscita
-}
+        hit = false;
+        visible = true;
+        //la talpa è uscita
+    }
     public void setHitTrue(){
         if (!hit) {
             hit = true;
+            visible = false;
             //la talpa è stata colpita
         }
     }
     public void controlEscape(){
         if (!hit) {
-            //la talpa non è stata colpita :(((((
+            visible = false;
+            //la talpa non è stata colpita :((((( 
         }
     }
     public boolean isHit(){
         return hit;
     }
-    
+    public boolean isVisible(){
+        return visible;
+    }
+
     @Override
     public void run() {
-    while (!Thread.currentThread().isInterrupted()){
-        try {
+        while (!Thread.currentThread().isInterrupted()){
+            try {
                 randomType();
                 appear();
                 Thread.sleep(2000);
                 controlEscape();      
                 Thread.sleep(1000);
             }
-        catch (InterruptedException e){
+            catch (InterruptedException e){
                 Thread.currentThread().interrupt();
             }
         }
