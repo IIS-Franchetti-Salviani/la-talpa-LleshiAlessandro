@@ -13,9 +13,30 @@ import java.time.LocalTime;
 public class Talpa implements Runnable{
     private int pointValue;
     private boolean hit;
-    private LocalTime timeOut;
+    private int timeOut;
     private TypeOfMole type;
-    private LocalTime ritorna;
+    private int ritorna;
+
+    public Talpa(int timeOut) {
+        this.timeOut = timeOut;
+        this.ritorna = timeOut;
+    }
+    
+    public void randomTypeMole(){
+        
+        
+        switch (type) {
+            case GOLDEN:
+                this.pointValue = 5;
+                break;
+            case SILVER:
+                this.pointValue = 3;
+                break;
+            default:
+                this.pointValue = 1;
+                break;
+        }
+    }
     
     
     @Override

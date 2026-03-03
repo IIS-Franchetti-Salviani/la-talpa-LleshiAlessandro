@@ -13,7 +13,7 @@ import java.util.Timer;
  */
 public class GestoreGioco {
     private Timer t;
-    private Talpa mole = new Talpa();
+    private Talpa mole = new Talpa(5);
     private Giocatore gamer = new Giocatore("giocatore 1", 0);
     private ArrayList<Buca> holes = new ArrayList();
     private Classifica calssific = new Classifica();
