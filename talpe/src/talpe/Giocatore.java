@@ -20,6 +20,11 @@ public class Giocatore {
     public int getPoints() {
         return points;
     }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+    
     public String getName() {
         return name;
     }

@@ -34,25 +34,11 @@ public class form extends javax.swing.JFrame {
         this.setSize(900, 550);
         g = new GestoreGioco();
         iconTalpa = new ImageIcon(getClass().getResource("/talpe/talpaImmage/talpa.png"));
-        bottoniBuca = new JButton[]{jButton1, jButton4, jButton5, jButton6, jButton7, jButton8, jButton3, jButton9, jButton10};
+        bottoniBuca = new JButton[]{jButton1, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9, jButton10, jButton3};
         for(JButton i : bottoniBuca){
             i.setBackground(m);
         }
-        t = new Timer(1000, e -> {
-            jLabel4.setText(secondi + "s");
-            secondi--;
-
-            if (secondi < 0) {
-                ((Timer)e.getSource()).stop();
-                javax.swing.JOptionPane.showMessageDialog(this, "Tempo scaduto!", "Fine partita", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                // ferma il gioco e disabilita i bottoni
-                for (JButton b : bottoniBuca) {
-                    b.setEnabled(false);
-                }
-            }
-        });
-        t.start();
+        
     }
     //non mi aggiornava la grafica della talpa, e quidni mi hanno spiegato che dovevo usare un metodo per aggiornarla
     private void aggiornaGrafica() {
@@ -93,7 +79,12 @@ public class form extends javax.swing.JFrame {
             }
 
         }
-        
+        if(g.giocatore.getPoints() >= 50){
+            g.getGiocatore().setPoints(50);
+            t.stop();
+            String testoIstruzioni = "hai vintoooo";
+            javax.swing.JOptionPane.showMessageDialog(this, testoIstruzioni, "vittoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -228,7 +219,7 @@ public class form extends javax.swing.JFrame {
         getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 370, 130, -1));
 
         jLabel3.setText("time:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 50, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 60, 20));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("jLabel4");
@@ -242,9 +233,23 @@ public class form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    t = new Timer(1000, e -> {
+        jLabel4.setText(secondi + "s");
+        secondi--;
 
-        g.start();  // fa partire il gioco e la talpa
-        this.aggiornaGrafica();
+        if (secondi < 0) {
+            ((Timer)e.getSource()).stop();
+            javax.swing.JOptionPane.showMessageDialog(this, "Tempo scaduto!", "Fine partita", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+            // ferma il gioco e disabilita i bottoni
+            for (JButton b : bottoniBuca) {
+                b.setEnabled(false);
+            }
+        }
+    });
+    t.start();
+    g.start();  // fa partire il gioco e la talpa
+    this.aggiornaGrafica();
 
     }//GEN-LAST:event_jButton11ActionPerformed
 
