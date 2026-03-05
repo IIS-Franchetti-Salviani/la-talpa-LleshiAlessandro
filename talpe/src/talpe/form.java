@@ -7,6 +7,7 @@ package talpe;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.Timer;
 
 /**
  *
@@ -23,6 +24,9 @@ public class form extends javax.swing.JFrame {
     Color m = new Color(202, 125, 80);
     Buca b = new Buca();
     int k = 1;
+    private Timer t;
+    private int secondi = 60;
+    
     
     public form() {
         initComponents();
@@ -34,7 +38,21 @@ public class form extends javax.swing.JFrame {
         for(JButton i : bottoniBuca){
             i.setBackground(m);
         }
-        
+        t = new Timer(1000, e -> {
+            jLabel4.setText(secondi + "s");
+            secondi--;
+
+            if (secondi < 0) {
+                ((Timer)e.getSource()).stop();
+                javax.swing.JOptionPane.showMessageDialog(this, "Tempo scaduto!", "Fine partita", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                // ferma il gioco e disabilita i bottoni
+                for (JButton b : bottoniBuca) {
+                    b.setEnabled(false);
+                }
+            }
+        });
+        t.start();
     }
     //non mi aggiornava la grafica della talpa, e quidni mi hanno spiegato che dovevo usare un metodo per aggiornarla
     private void aggiornaGrafica() {
@@ -98,6 +116,8 @@ public class form extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton13 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jButton2.setText("jButton1");
 
@@ -175,7 +195,7 @@ public class form extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 140, 210, 110));
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 190, 110));
 
         jButton12.setText("istruzioni");
         jButton12.setActionCommand("jButton12");
@@ -184,20 +204,20 @@ public class form extends javax.swing.JFrame {
                 jButton12ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 210, 100));
+        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 190, 100));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 390, 200, 110));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("punteggio");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, 60, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 370, 60, 20));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, 210, 100));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 260, 190, 100));
 
         jButton13.setText("inserisci nome");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -205,7 +225,14 @@ public class form extends javax.swing.JFrame {
                 jButton13ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 370, 120, -1));
+        getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 370, 130, -1));
+
+        jLabel3.setText("time:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 50, 20));
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 60, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -328,6 +355,8 @@ public class form extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
