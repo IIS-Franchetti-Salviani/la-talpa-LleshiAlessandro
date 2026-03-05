@@ -71,9 +71,9 @@ public class Talpa implements Runnable{
             try {
                 randomType();
                 appear();
-                Thread.sleep(2000);
-                controlEscape();      
                 Thread.sleep(1000);
+                controlEscape();      
+                
             }
             catch (InterruptedException e){
                 Thread.currentThread().interrupt();

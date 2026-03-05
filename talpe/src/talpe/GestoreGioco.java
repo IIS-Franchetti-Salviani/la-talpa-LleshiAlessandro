@@ -15,7 +15,7 @@ import java.util.Random;
 public class GestoreGioco {
     private Buca[] buche; // ho optato per un array dato che so che la dimensio ne dei buchi è massimo 9
     private Talpa talpa;
-    private Giocatore giocatore;
+    protected Giocatore giocatore;
     private Classifica classifica;
     private Random rdn;     
     private int bucaAttiva;
@@ -31,13 +31,8 @@ public class GestoreGioco {
         rdn = new Random();
         bucaAttiva = -1; //nessuna buca attiva all’inizio
     }
-    //costruttore con nome per l'utente
-    public GestoreGioco(String nome) {
-        giocatore = new Giocatore(nome);
-        talpa = new Talpa();
-        classifica = new Classifica();
-        bucaAttiva = -1;
-    }
+
+    
     public void spawnTalpa() {
         // se c'è già una buca attiva, resetto
         if (bucaAttiva != -1) {
@@ -54,22 +49,24 @@ public class GestoreGioco {
         talpa.appear();
     }
     public void colpisciBuca(int index) {
-        // Controllo se la buca cliccata ha la talpa
-        if (buche[index].hasMole()) {
-            talpa.setHitTrue();
-            giocatore.addPoints(talpa.getPointValue());
-            buche[index].setMole(false);
-            bucaAttiva = -1;
+        if (bucaAttiva == index) {
+            if (buche[index].hasMole()) {
+                talpa.setHitTrue();
+                giocatore.addPoints(talpa.getPointValue());
+                buche[index].setMole(false);
+                bucaAttiva = -1;
+                classifica.aggiorna(giocatore);
+            }
         }
-        //aggiorno la classifica
-        classifica.aggiorna(giocatore);
+
     }
+    
     public void cicloTalpa() {
         Thread t = new Thread(() -> {
             while (true) {
                 try {
                     spawnTalpa();
-                    Thread.sleep(1000 + rdn.nextInt(1000));
+                    Thread.sleep(rdn.nextInt(1000, 2001));
                 } catch (InterruptedException e) {
                     break;
                 }
@@ -77,6 +74,7 @@ public class GestoreGioco {
         });
         t.start();
     }
+    
     public void start() {
         bucaAttiva = -1;
         spawnTalpa();
