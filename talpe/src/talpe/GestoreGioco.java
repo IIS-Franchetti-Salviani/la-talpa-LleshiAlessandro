@@ -63,7 +63,7 @@ public class GestoreGioco {
             while (true) {
                 try {
                     spawnTalpa();
-                    Thread.sleep(rdn.nextInt(1000, 2001));
+                    Thread.sleep(rdn.nextInt(700, 1501));
                 } catch (InterruptedException e) {
                     break;
                 }
@@ -74,7 +74,6 @@ public class GestoreGioco {
     
     public void start() {
         bucaAttiva = -1;
-        
         cicloTalpa();
     }
     

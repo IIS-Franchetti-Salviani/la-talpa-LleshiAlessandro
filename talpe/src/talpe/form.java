@@ -38,6 +38,7 @@ public class form extends javax.swing.JFrame {
         for(JButton i : bottoniBuca){
             i.setBackground(m);
         }
+        jButton11.setEnabled(false);
         
     }
     //non mi aggiornava la grafica della talpa, e quidni mi hanno spiegato che dovevo usare un metodo per aggiornarla
@@ -79,11 +80,15 @@ public class form extends javax.swing.JFrame {
             }
 
         }
-        if(g.giocatore.getPoints() >= 50){
-            g.getGiocatore().setPoints(50);
+        if(g.giocatore.getPoints() >= 60){
+            g.getGiocatore().setPoints(60);
             t.stop();
             String testoIstruzioni = "hai vintoooo";
             javax.swing.JOptionPane.showMessageDialog(this, testoIstruzioni, "vittoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            jButton11.setEnabled(false);
+            for(JButton i : bottoniBuca) {
+                i.setEnabled(false);
+            }
         }
     }
     @SuppressWarnings("unchecked")
@@ -260,9 +265,9 @@ public class form extends javax.swing.JFrame {
         - Premi 'Gioca' per iniziare.
         - Clicca sulle buche per colpire la talpa.
         - Ogni talpa vale punti diversi:
-            * GOLDEN = 5 punti
-            * SILVER = 3 punti
-            * CLASSIC = 1 punto
+            1. GOLDEN = 5 punti
+            2. SILVER = 3 punti
+            3. CLASSIC = 1 punto
         - Divertiti e cerca di fare il punteggio più alto!
         """;
 
@@ -316,7 +321,7 @@ public class form extends javax.swing.JFrame {
         k = 0;
     }
     jButton13.setEnabled(false);
-        
+    jButton11.setEnabled(true);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
