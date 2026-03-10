@@ -25,7 +25,7 @@ public class form extends javax.swing.JFrame {
     Buca b = new Buca();
     int k = 1;
     private Timer t;
-    private int secondi = 60;
+    private int secondi = 40;
     
     
     public form() {
@@ -41,6 +41,8 @@ public class form extends javax.swing.JFrame {
         jButton11.setEnabled(false);
         
     }
+    
+    
     //non mi aggiornava la grafica della talpa, e quidni mi hanno spiegato che dovevo usare un metodo per aggiornarla
     private void aggiornaGrafica() {
         Thread t = new Thread(() -> {
@@ -65,13 +67,10 @@ public class form extends javax.swing.JFrame {
     }
     
     private void colpisci(int index){
-
         g.colpisciBuca(index);
-
         jLabel1.setText("Punti: " + g.getGiocatore().getPoints());
-
+        
         for (int i = 0; i < bottoniBuca.length; i++) {
-
             if (g.getBucaAttiva() == i && g.getTalpa().isVisible()) {
                 bottoniBuca[i].setIcon(iconTalpa);
             } 
@@ -80,11 +79,13 @@ public class form extends javax.swing.JFrame {
             }
 
         }
+        //controllo vittoria
         if(g.giocatore.getPoints() >= 60){
             g.getGiocatore().setPoints(60);
             t.stop();
             String testoIstruzioni = "hai vintoooo";
             javax.swing.JOptionPane.showMessageDialog(this, testoIstruzioni, "vittoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            
             jButton11.setEnabled(false);
             for(JButton i : bottoniBuca) {
                 i.setEnabled(false);
