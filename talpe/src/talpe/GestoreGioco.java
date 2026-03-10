@@ -16,7 +16,6 @@ public class GestoreGioco {
     private Buca[] buche; // ho optato per un array dato che so che la dimensio ne dei buchi è massimo 9
     private Talpa talpa;
     protected Giocatore giocatore;
-    private Classifica classifica;
     private Random rdn;     
     private int bucaAttiva;
     
@@ -27,7 +26,6 @@ public class GestoreGioco {
         }
         talpa = new Talpa();
         giocatore = new Giocatore("Player1");
-        classifica = new Classifica();
         rdn = new Random();
         bucaAttiva = -1; //nessuna buca attiva all’inizio
     }
@@ -36,7 +34,7 @@ public class GestoreGioco {
     public void spawnTalpa() {
         // se c'è già una buca attiva, resetto
         if (bucaAttiva != -1) {
-            buche[bucaAttiva].setMole(false);//"attivo" la talpa in questa buca
+            buche[bucaAttiva].setMole(false);
             talpa.controlEscape();
         }
 
@@ -55,7 +53,6 @@ public class GestoreGioco {
                 giocatore.addPoints(talpa.getPointValue());
                 buche[index].setMole(false);
                 bucaAttiva = -1;
-                classifica.aggiorna(giocatore);
             }
         }
 
@@ -77,7 +74,7 @@ public class GestoreGioco {
     
     public void start() {
         bucaAttiva = -1;
-        spawnTalpa();
+        
         cicloTalpa();
     }
     
