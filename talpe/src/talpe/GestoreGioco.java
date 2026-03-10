@@ -18,6 +18,7 @@ public class GestoreGioco {
     protected Giocatore giocatore;
     private Random rdn;     
     private int bucaAttiva;
+    Thread t;
     
     public GestoreGioco() {
         buche = new Buca[9];
@@ -59,7 +60,7 @@ public class GestoreGioco {
     }
     
     public void cicloTalpa() {
-        Thread t = new Thread(() -> {
+        t = new Thread(() -> {
             while (true) {
                 try {
                     spawnTalpa();
@@ -75,6 +76,10 @@ public class GestoreGioco {
     public void start() {
         bucaAttiva = -1;
         cicloTalpa();
+    }
+    
+    public void stopGame(){
+        t.interrupt();
     }
     
     public Giocatore getGiocatore() {

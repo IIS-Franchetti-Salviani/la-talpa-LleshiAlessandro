@@ -83,6 +83,7 @@ public class form extends javax.swing.JFrame {
         if(g.giocatore.getPoints() >= 60){
             g.getGiocatore().setPoints(60);
             t.stop();
+            g.stopGame();
             String testoIstruzioni = "hai vintoooo";
             javax.swing.JOptionPane.showMessageDialog(this, testoIstruzioni, "vittoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             
@@ -251,6 +252,7 @@ public class form extends javax.swing.JFrame {
             for (JButton b : bottoniBuca) {
                 b.setEnabled(false);
             }
+            g.stopGame();
         }
     });
     t.start();
